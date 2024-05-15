@@ -1,21 +1,17 @@
-import { Actor, Vector } from "excalibur";
+import { Vector } from "excalibur";
 import { Resources } from "./resources"
 import { Bullet } from "./bullet";
-import { Projectiles } from "./projectiles";
+import { Projectile } from "./projectile";
 
-export class Smallcomet extends Projectiles {
+export class Smallcomet extends Projectile {
     constructor() {
         super();
-        for (let i = 0; i < 10; i++) {
-            this.graphics.use(Resources.Comet2.toSprite());
-            this.scale = new Vector(0.5, 0.5);
-            this.vel = new Vector(150, 0);
+        this.graphics.use(Resources.Comet2.toSprite());
+        this.scale = new Vector(0.5, 0.5);
+        this.vel = new Vector(200, 0);
+        this.pos = new Vector(Math.random() * -2000, Math.random() * 800);
 
-
-            this.pos = new Vector(100, 100);
-
-            this.on('collisionstart', (event) => this.hitSomething(event))
-        }
+        this.on('collisionstart', (event) => { this.hitSomething(event) });
     }
 
     hitSomething(event) {

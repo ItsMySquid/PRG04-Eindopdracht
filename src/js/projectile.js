@@ -1,8 +1,6 @@
 import { Actor, Vector } from "excalibur";
-import { Comet } from "./comet";
-import { Smallcomet } from "./smallcomet";
 
-export class Projectiles extends Actor {
+export class Projectile extends Actor {
     constructor() {
         super({
             anchor: new Vector(0.5, 0.5),
@@ -14,7 +12,7 @@ export class Projectiles extends Actor {
     }
 
     onInitialize(engine) {
-        console.log("Projectiles working");
+        console.log("Projectile working");
     }
 
 }

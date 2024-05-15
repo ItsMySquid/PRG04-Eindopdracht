@@ -1,7 +1,8 @@
 import { Actor, Keys, Shape, Vector } from "excalibur";
 import { Resources } from "./resources"
 import { Bullet } from "./bullet";
-import { Projectiles } from "./projectiles";
+import { Projectile } from "./projectile";
+import { Smallship } from "./smallship";
 
 export class Ship extends Actor {
     lives
@@ -22,9 +23,17 @@ export class Ship extends Actor {
         this.scale = new Vector(0.1, 0.1);
         this.pos = new Vector(1200, 450);
         this.lives = 3
+        // Powerup toevoegen vanaf x aantal punten
+        this.addPowerup()
 
         this.on('collisionstart', (event) => this.hitSomething(event))
         this.on("exitviewport", (event) => this.resetPosition(event))
+    }
+
+
+    addPowerup() {
+        const ship2 = new Smallship;
+        this.addChild(ship2);
     }
 
     removeLife() {
@@ -33,7 +42,7 @@ export class Ship extends Actor {
     }
 
     hitSomething(event) {
-        if (event.other instanceof Projectiles) {
+        if (event.other instanceof Projectile) {
             this.pos = new Vector(1200, 450)
             this.actions.blink(100, 100, 5)
             this.removeLife();
