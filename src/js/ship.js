@@ -6,6 +6,7 @@ import { Smallship } from "./smallship";
 
 export class Ship extends Actor {
     lives
+    ammo = 10
 
     constructor() {
         super({
@@ -38,7 +39,7 @@ export class Ship extends Actor {
 
     removeLife() {
         this.lives--
-        console.log(this.lives);
+        console.log(`Lives: ${this.lives}`);
     }
 
     hitSomething(event) {
@@ -55,8 +56,9 @@ export class Ship extends Actor {
     }
 
     onPostUpdate(engine) {
-        if (this.lives < 0) {
+        if (this.lives === 0) {
             // game over scene
+            engine.goToScene('game-over')
         }
 
         let xspeed = 0;
@@ -82,8 +84,16 @@ export class Ship extends Actor {
         this.graphics.flipHorizontal = (this.vel.x > 0)
 
         if (engine.input.keyboard.wasPressed(Keys.Space)) {
-            const bullet = new Bullet(this.pos);
-            engine.add(bullet)
+            if (this.ammo === 0) {
+                //reload animation??
+                console.log("reloading");
+                this.ammo = 10
+            } else {
+                const bullet = new Bullet(this.pos);
+                engine.add(bullet)
+                this.ammo--
+            }
+            console.log(`dit is je aantal ammo: ${this.ammo}`);
         }
     }
 }

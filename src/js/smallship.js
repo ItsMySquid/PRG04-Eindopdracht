@@ -26,7 +26,7 @@ export class Smallship extends Actor {
 
     onPostUpdate(engine) {
         if (engine.input.keyboard.wasPressed(Keys.Space)) {
-            console.log(this.pos);
+            // console.log(this.pos);
             // this.pos loopt vast op het midden positie
             const powerbullet = new Powerbullet(this.pos);
             engine.add(powerbullet)

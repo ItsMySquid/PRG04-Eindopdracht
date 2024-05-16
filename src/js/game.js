@@ -1,10 +1,9 @@
 import '../css/style.css'
 import { Engine, DisplayMode, Label, Vector, Font, Color } from "excalibur"
 import { ResourceLoader } from './resources.js'
-import { Ship } from './ship.js'
-import { Background } from './background.js'
-import { Comet } from './comet.js'
-import { Smallcomet } from './smallcomet.js'
+import { Level } from './level.js'
+import { Gamewon } from './gamewon.js';
+import { Gameover } from './gameover.js';
 
 export class Game extends Engine {
 
@@ -23,27 +22,13 @@ export class Game extends Engine {
 
     startGame() {
         console.log("start de game!")
-        const background = new Background();
-        this.add(background);
 
-        this.scoreLabel = new Label({
-            text: 'Score: 0',
-            pos: new Vector(25, 25),
-            font: new Font({ color: Color.White, size: 30 }),
-        });
+        this.add('level', new Level())
+        this.add('game-over', new Gameover())
+        this.add('game-won', new Gamewon())
 
-        this.add(this.scoreLabel);
-
-        const ship = new Ship();
-        this.add(ship);
-
-        const comet = new Comet();
-        this.add(comet)
-
-        for (let i = 0; i < 10; i++) {
-            const scomet = new Smallcomet();
-            this.add(scomet);
-        }
+        // goes to level 1
+        this.goToScene('level')
     }
 
     updateScore() {
