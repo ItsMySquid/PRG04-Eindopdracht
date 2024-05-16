@@ -8,8 +8,8 @@ import { UI } from "./UI";
 export class Level extends Scene {
     onInitialize(engine) {
         this.score = 0;
-        // this.scoreLabel;
 
+        // achtergrond
         const background = new Background();
         this.add(background);
 
@@ -17,13 +17,7 @@ export class Level extends Scene {
         this.ui = new UI()
         this.add(this.ui)
 
-        // this.scoreLabel = new Label({
-        //     text: `Score: ${this.score}`,
-        //     pos: new Vector(25, 25),
-        //     font: new Font({ color: Color.White, size: 30 }),
-        // });
-        // this.add(this.scoreLabel)
-
+        // elementen in het level
         const ship = new Ship();
         this.add(ship);
 
@@ -31,8 +25,8 @@ export class Level extends Scene {
         this.add(comet)
 
         for (let i = 0; i < 10; i++) {
-            const scomet = new Smallcomet();
-            this.add(scomet);
+            const smallcomet = new Smallcomet();
+            this.add(smallcomet);
         }
     }
 
@@ -42,6 +36,8 @@ export class Level extends Scene {
     }
 
     onPostUpdate(engine) {
+        // update score
+
         if (this.score === 10) {
             engine.goToScene('game-won')
         } else if (this.score === 15) {

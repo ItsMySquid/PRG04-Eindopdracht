@@ -7,6 +7,7 @@ import { Smallship } from "./smallship";
 export class Ship extends Actor {
     lives
     ammo = 10
+    bomb = 2
 
     constructor() {
         super({
@@ -50,6 +51,18 @@ export class Ship extends Actor {
         }
     }
 
+    Bombaway() {
+        this.bomb--
+        console.log(this.bomb);
+        if (this.bomb > 0) {
+            console.log("BOMMEN LOS");
+        }
+        // clear all projectiles when activated
+        // 
+        // Level.kill(Projectile)
+        // Projectile.kill()
+    }
+
     resetPosition(event) {
         this.pos = new Vector(1200, 450)
         this.removeLife();
@@ -78,6 +91,10 @@ export class Ship extends Actor {
 
         if (engine.input.keyboard.isHeld(Keys.A) || engine.input.keyboard.isHeld(Keys.Left)) {
             xspeed = -300
+        }
+
+        if (engine.input.keyboard.wasPressed(Keys.F)) {
+            this.Bombaway()
         }
 
         this.vel = new Vector(xspeed, yspeed);

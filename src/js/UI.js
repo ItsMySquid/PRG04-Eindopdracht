@@ -15,6 +15,10 @@ export class UI extends ScreenElement {
         });
         this.addChild(this.scoreLabel)
 
+        // backdrop levens
+        let barbackground = new Actor({ x: 20, y: 55, color: Color.Gray, width: 210, height: 30 })
+        barbackground.graphics.anchor = Vector.Zero
+        this.addChild(barbackground)
 
         // levens
         this.healthbar = new Actor({ x: 25, y: 60, color: Color.Green, width: 200, height: 20 })
