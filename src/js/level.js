@@ -13,7 +13,7 @@ export class Level extends Scene {
         const background = new Background();
         this.add(background);
 
-        // UI invoeren
+        // // UI invoeren
         this.ui = new UI()
         this.add(this.ui)
 

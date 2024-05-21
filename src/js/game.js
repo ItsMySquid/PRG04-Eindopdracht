@@ -7,8 +7,12 @@ import { Gameover } from './gameover.js';
 
 export class Game extends Engine {
 
-    score = 10;
-    scoreLabel;
+    totalScore = 0;
+    scoreLabel
+    /**
+     * @type Level
+     */
+    level
 
     constructor() {
         super({
@@ -23,7 +27,8 @@ export class Game extends Engine {
     startGame() {
         console.log("start de game!")
 
-        this.add('level', new Level())
+        this.level = new Level()
+        this.add('level', this.level)
         this.add('game-over', new Gameover())
         this.add('game-won', new Gamewon())
 
@@ -31,9 +36,15 @@ export class Game extends Engine {
         this.goToScene('level')
     }
 
-    updateScore() {
-        this.score++
-        this.scoreLabel.text = `Score: ${this.score}`
+    updateScore(score) {
+        // @ts-ignore
+        this.level.ui.updateScore(score)
+        // this.scoreLabel.text = `Score: ${this.score}`
+    }
+
+    updateHealth() {
+        // @ts-ignore
+        this.level.ui.updateHealth()
     }
 }
 

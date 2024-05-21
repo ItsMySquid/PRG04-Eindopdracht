@@ -1,11 +1,17 @@
 import { Actor, Keys, Shape, Vector } from "excalibur";
 import { Resources } from "./resources"
 import { Powerbullet } from "./powerbullet";
+import { Ship } from "./ship";
 
 export class Smallship extends Actor {
     lives
+    ship
 
-    constructor() {
+    /**
+     * 
+     * @param {Ship} ship 
+     */
+    constructor(ship) {
         super({
             anchor: new Vector(0.5, 0.5),
             pos: new Vector(200, 200),
@@ -13,6 +19,7 @@ export class Smallship extends Actor {
             height: 100,
             radius: 500,
         });
+        this.ship = ship
     }
 
     onInitialize(engine) {
@@ -26,9 +33,9 @@ export class Smallship extends Actor {
 
     onPostUpdate(engine) {
         if (engine.input.keyboard.wasPressed(Keys.Space)) {
-            // console.log(this.pos);
+            // console.log(this.ship.pos);
             // this.pos loopt vast op het midden positie
-            const powerbullet = new Powerbullet(this.pos);
+            const powerbullet = new Powerbullet(new Vector(this.ship.pos.x + 50, this.ship.pos.y + 50));
             engine.add(powerbullet)
         }
     }

@@ -34,13 +34,14 @@ export class Ship extends Actor {
 
 
     addPowerup() {
-        const ship2 = new Smallship;
+        const ship2 = new Smallship(this);
         this.addChild(ship2);
     }
 
     removeLife() {
+        // @ts-ignore
+        this.scene?.engine.updateHealth(1)
         this.lives--
-        console.log(`Lives: ${this.lives}`);
     }
 
     hitSomething(event) {
@@ -69,6 +70,8 @@ export class Ship extends Actor {
     }
 
     onPostUpdate(engine) {
+        // console.log(this.pos);
+
         if (this.lives === 0) {
             // game over scene
             engine.goToScene('game-over')

@@ -23,7 +23,8 @@ export class Comet extends Projectile {
             if (this.lives === 0) {
                 this.kill()
                 // Dit zou mijn score moeten update maar werkt nog niet
-                // this.scene.engine.updateScore();
+                // @ts-ignore
+                this.scene?.engine.updateScore(2)
             }
             event.other.kill()
         }

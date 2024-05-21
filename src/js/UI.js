@@ -1,8 +1,13 @@
 import { Actor, Color, Font, Label, ScreenElement, Vector } from "excalibur";
 
 export class UI extends ScreenElement {
+
+    healthbar;
+    score = 0
+    scoreLabel
+
     onInitialize(engine) {
-        console.log("tekst veld is toegevoegd!");
+        // console.log("tekst veld is toegevoegd!");
 
         // score
         this.score = 0;
@@ -25,12 +30,20 @@ export class UI extends ScreenElement {
         this.healthbar.graphics.anchor = Vector.Zero
         this.addChild(this.healthbar)
 
-        // update als ik 1 van de 3 levens verlies
-        // updateScore() {
-        //     this.healthbar.scale = new Vector(0.66, 1)
-        // }
-
-
-        // aantal bullets onderaan het scherm
     }
+    // update als ik 1 van de 3 levens verlies
+    updateScore(score) {
+        console.log("test");
+        this.score += score;
+        this.scoreLabel.text = `Score: ${this.score}`
+    }
+
+
+    // update health
+    updateHealth() {
+        this.healthbar.scale = new Vector(0.66, 1)
+    }
+
+
+    // aantal bullets onderaan het scherm
 }

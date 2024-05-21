@@ -17,6 +17,8 @@ export class Smallcomet extends Projectile {
     hitSomething(event) {
         if (event.other instanceof Bullet) {
             this.kill()
+            // @ts-ignore
+            this.scene?.engine.updateScore(1)
             event.other.kill()
         }
     }
