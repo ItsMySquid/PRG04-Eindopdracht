@@ -4,35 +4,49 @@ import { Comet } from "./comet";
 import { Smallcomet } from "./smallcomet";
 import { Background } from "./background";
 import { UI } from "./UI";
+import { Game } from "./game";
 
 export class Level extends Scene {
+
+    /**
+     * 
+     * @param {Game} engine 
+     */
     onInitialize(engine) {
         this.score = 0;
 
+    }
+
+    onActivate(ctx) {
         // achtergrond
-        const background = new Background();
-        this.add(background);
+        this.background = new Background();
+        this.add(this.background);
 
         // // UI invoeren
         this.ui = new UI()
         this.add(this.ui)
 
         // elementen in het level
-        const ship = new Ship();
-        this.add(ship);
+        this.ship = new Ship();
+        this.add(this.ship);
 
-        const comet = new Comet();
-        this.add(comet)
+        this.comet = new Comet();
+        this.add(this.comet)
 
         for (let i = 0; i < 10; i++) {
-            const smallcomet = new Smallcomet();
-            this.add(smallcomet);
+            this.smallcomet = new Smallcomet();
+            this.add(this.smallcomet);
         }
+        this.score = 0;
     }
 
-    onActivate(ctx) {
-        // no clue wat het doet maar komt wss in de les.
-        console.log("reset het level");
+    onDeactivate() {
+        this.actors.forEach(actor => actor.kill());
+    }
+
+    powerupScore(score) {
+        this.score += score;
+        console.log(this.score);
     }
 
     onPostUpdate(engine) {

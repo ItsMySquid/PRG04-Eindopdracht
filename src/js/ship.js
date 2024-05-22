@@ -39,9 +39,10 @@ export class Ship extends Actor {
     }
 
     removeLife() {
-        // @ts-ignore
-        this.scene?.engine.updateHealth(1)
         this.lives--
+        // @ts-ignore
+        this.scene?.engine.updateHealth(this.lives / 3)
+
     }
 
     hitSomething(event) {

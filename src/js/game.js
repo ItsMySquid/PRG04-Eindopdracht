@@ -8,7 +8,6 @@ import { Gameover } from './gameover.js';
 export class Game extends Engine {
 
     totalScore = 0;
-    scoreLabel
     /**
      * @type Level
      */
@@ -39,12 +38,12 @@ export class Game extends Engine {
     updateScore(score) {
         // @ts-ignore
         this.level.ui.updateScore(score)
-        // this.scoreLabel.text = `Score: ${this.score}`
+        this.level.powerupScore(score)
     }
 
-    updateHealth() {
+    updateHealth(hp) {
         // @ts-ignore
-        this.level.ui.updateHealth()
+        this.level.ui.updateHealth(hp)
     }
 }
 

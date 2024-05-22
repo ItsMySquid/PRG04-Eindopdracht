@@ -40,8 +40,8 @@ export class UI extends ScreenElement {
 
 
     // update health
-    updateHealth() {
-        this.healthbar.scale = new Vector(0.66, 1)
+    updateHealth(hp) {
+        this.healthbar.scale = new Vector(hp, 1)
     }
 
 
