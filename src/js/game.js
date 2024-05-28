@@ -4,6 +4,7 @@ import { ResourceLoader } from './resources.js'
 import { Level } from './level.js'
 import { Gamewon } from './gamewon.js';
 import { Gameover } from './gameover.js';
+import { Home } from './home.js';
 
 export class Game extends Engine {
 
@@ -28,11 +29,12 @@ export class Game extends Engine {
 
         this.level = new Level()
         this.add('level', this.level)
+        this.add('home', new Home())
         this.add('game-over', new Gameover())
         this.add('game-won', new Gamewon())
 
-        // goes to level 1
-        this.goToScene('level')
+        // goes to home
+        this.goToScene('home')
     }
 
     updateScore(score) {
