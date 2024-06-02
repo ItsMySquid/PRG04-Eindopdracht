@@ -20,6 +20,13 @@ export class UI extends ScreenElement {
         });
         this.addChild(this.scoreLabel)
 
+        this.goalText = new Label({
+            text: `Behaal 10 punten!`,
+            pos: new Vector(250, 25),
+            font: new Font({ color: Color.White, size: 30 }),
+        });
+        this.addChild(this.goalText)
+
         // backdrop levens
         let barbackground = new Actor({ x: 20, y: 55, color: Color.Gray, width: 210, height: 30 })
         barbackground.graphics.anchor = Vector.Zero
